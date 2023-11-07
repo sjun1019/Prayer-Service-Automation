@@ -270,8 +270,12 @@ class MyWindow(QMainWindow):
                         self.play_button_()
                         self.alarmTimer = QTimer(self)
                         self.alarmTimer.setInterval(alarm_Set["time"]*60*60*1000)
-                        self.alarmTimer.timeout.connect(self.stop_button_clicked)
+                        self.alarmTimer.timeout.connect(self.prayTimeout)
                         self.alarmTimer.start()
+
+    def prayTimeout(self):
+        self.stop_button_clicked()
+        powerOff()
 
     def update_date_time(self):
         current_datetime = datetime.now()
